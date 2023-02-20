@@ -1,5 +1,6 @@
 package com.example.hrm.ExceptionTest;
 
+import com.example.hrm.common.ComResponse;
 import com.example.hrm.exception.CustomExceptionCode;
 import com.example.hrm.exception.MyException;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -21,12 +22,15 @@ public class TestController {
     @GetMapping("/hi")
     public ResponseEntity<Map> getException(@RequestParam Integer number) {
 
+        ComResponse comResponse = new ComResponse();
         HashMap<String, String> map = new HashMap<>();
 
         if(number == 1) {
             System.out.println("성공");
-            map.put("name", "이충근");
-            map.put("age", "27");
+            map.put("number", "1");
+            comResponse.setStatus(CustomExceptionCode.SUCCESS.getStatus());
+            comResponse.setMessage(CustomExceptionCode.SUCCESS.getMessage());
+            comResponse.setBody(map);
         } else if(number == 0) {
             throw new MyException(CustomExceptionCode.ZERO_FAIL);
         } else if(number == 2) {
@@ -35,7 +39,7 @@ public class TestController {
             throw new MyException(CustomExceptionCode.THREE_FAIL);
         }
 
-        return new ResponseEntity(map, HttpStatus.OK);
+        return new ResponseEntity(comResponse, HttpStatus.OK);
     }
 }
 

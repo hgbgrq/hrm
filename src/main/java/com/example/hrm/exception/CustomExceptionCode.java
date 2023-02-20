@@ -3,9 +3,9 @@ package com.example.hrm.exception;
 public enum CustomExceptionCode {
 
     SUCCESS(200, "성공했습니다."),
-    ZERO_FAIL(400, "0 입니다."),
-    TWO_FAIL(400, "2 입니다."),
-    THREE_FAIL(400, "3 입니다.");
+    ZERO_FAIL(500, "존재하지 않는 숫자 : 0"),
+    TWO_FAIL(500, "존재하지 않는 숫자 : 2"),
+    THREE_FAIL(500, "존재하지 않는 숫자 : 3");
 
     private final int status;
     private final String message;

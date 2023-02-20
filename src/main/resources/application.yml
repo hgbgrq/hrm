@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/hrm
+    url: jdbc:mysql://localhost:3306/lcg_db
     username: root
-    password: root
+    password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
@@ -15,3 +15,20 @@ spring:
         show_sql: true
         dialect:
           storage_engine: innodb
+
+springdoc:
+  packages-to-scan: com.example.hrm
+  default-produces-media-type: application/json;charset=UTF-8
+  default-consumes-media-type: application/json;charset=UTF-8
+  cache:
+    disabled: true
+  swagger-ui:
+    operations-sorter: alpha
+    tags-sorter: alpha
+    path: /api-docs
+    csrf:
+      enabled: true
+  api-docs:
+    path: /api-docs/json
+    groups:
+      enabled: true

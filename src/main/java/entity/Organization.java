@@ -3,8 +3,10 @@ package entity;
 import com.example.hrm.common.CommonEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.Data;
 
-@Entity
+@Data
+@Entity(name = "TB_ORGANIZATION")
 public class Organization extends CommonEntity  {
     @Id
     private String organizationUuid;

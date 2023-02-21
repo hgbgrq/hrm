@@ -1,24 +1,27 @@
-package entity;
+package com.example.hrm.entity;
 
 import com.example.hrm.common.CommonEntity;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Entity(name = "TB_APPROVAL_DETAIL")
+@Entity
+@Table(name = "TB_APPROVAL_DETAIL")
 public class ApprovalDetail extends CommonEntity {
     @Id
     private String approvalDetailUuid;
-
+    @Column
     private String approvalMasterUuid;
-
+    @Column
     private String approvalDetailAuth;
-
+    @Column
     private String approvalDetailStatusCode;
-
+    @Column
     private String approvalDetailDescription;
-
+    @Column
     private String approvalDetailSort;
 
 }

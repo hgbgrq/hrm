@@ -9,6 +9,8 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: create
+      naming :
+        physical-strategy : com.example.hrm.config.UpperCaseNamingStrategy
     properties:
       hibernate:
         format_sql: true

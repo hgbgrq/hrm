@@ -1,4 +1,4 @@
-package com.example.hrm.common;
+package com.example.hrm.common.dto;
 
 public class CommonEntity {
 

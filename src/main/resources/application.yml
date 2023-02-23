@@ -1,22 +1,30 @@
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/lcg_db
-    username: root
-    password: admin
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    open-in-view: false
-    hibernate:
-      ddl-auto: create
-      naming :
-        physical-strategy : com.example.hrm.config.UpperCaseNamingStrategy
-    properties:
-      hibernate:
-        format_sql: true
-        show_sql: true
-        dialect:
-          storage_engine: innodb
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/lcg_db
+#    username: root
+#    password: admin
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
+#    open-in-view: false
+#    hibernate:
+#      ddl-auto: create
+#      naming :
+#        physical-strategy : com.example.hrm.config.UpperCaseNamingStrategy
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        show_sql: true
+#        dialect:
+#          storage_engine: innodb
+
+  security:
+    staticContents-url-patterns: # 기본 스웨거 접속 url
+      /v3/api-docs/**
+      , /swagger-ui/**
+    permitAll-url-patterns: # 모든 접근 허용 url 목록
+      /login
+      , /authCheck
 
 springdoc:
   packages-to-scan: com.example.hrm

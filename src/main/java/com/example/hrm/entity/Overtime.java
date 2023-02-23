@@ -1,6 +1,6 @@
 package com.example.hrm.entity;
 
-import com.example.hrm.common.CommonEntity;
+import com.example.hrm.common.dto.CommonEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

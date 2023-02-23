@@ -1,10 +1,8 @@
 package com.example.hrm.ExceptionTest;
 
-import com.example.hrm.common.ComResponse;
+import com.example.hrm.common.dto.ComResponse;
 import com.example.hrm.exception.CustomExceptionCode;
 import com.example.hrm.exception.MyException;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

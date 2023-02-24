@@ -1,22 +1,22 @@
 spring:
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/lcg_db
-#    username: root
-#    password: admin
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#  jpa:
-#    database-platform: org.hibernate.dialect.MySQL8Dialect
-#    open-in-view: false
-#    hibernate:
-#      ddl-auto: create
-#      naming :
-#        physical-strategy : com.example.hrm.config.UpperCaseNamingStrategy
-#    properties:
-#      hibernate:
-#        format_sql: true
-#        show_sql: true
-#        dialect:
-#          storage_engine: innodb
+  datasource:
+    url: jdbc:mysql://localhost:3306/hrm
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+      naming :
+        physical-strategy : com.example.hrm.config.UpperCaseNamingStrategy
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        dialect:
+          storage_engine: innodb
 
   security:
     login-page: # 로그인 페이지 주소

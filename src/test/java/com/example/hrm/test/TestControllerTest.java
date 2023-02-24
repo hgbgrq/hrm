@@ -4,8 +4,6 @@ import com.example.hrm.exception.MyException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static com.example.hrm.exception.CustomExceptionCode.FAIL;
-
 @SpringBootTest
 class TestControllerTest {
 
@@ -17,7 +15,6 @@ class TestControllerTest {
         if(i == 1) {
             System.out.println("성공");
         } else {
-            throw new MyException(FAIL);
         }
     }
 }

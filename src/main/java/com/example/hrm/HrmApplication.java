@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 /**
  * DB 연결없이 실행하기위해 exclude 옵션 추가
  */
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication()
 public class HrmApplication {
 
 	public static void main(String[] args) {

@@ -1,6 +1,5 @@
 package com.example.hrm.entity;
 
-import com.example.hrm.common.dto.CommonEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -10,7 +9,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "TB_SCHEDULE")
-public class Schedule extends CommonEntity {
+public class Schedule {
 
     @Id
     private String scheduleUuid;

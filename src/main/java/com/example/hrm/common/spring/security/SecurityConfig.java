@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Slf4j
 @Configuration
@@ -18,6 +19,9 @@ public class SecurityConfig{
 
     @Autowired
     private AuthenticationProviderImpl authenticationProvider;
+
+    @Value("${spring.security.login-page}")
+    private String loginPattern;
 
     @Value("${spring.security.staticContents-url-patterns}")
     private String[] staticContentsPatterns;
@@ -30,32 +34,38 @@ public class SecurityConfig{
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        // Security 필터를 적용 하지 않을(허용) 주소( 기본 스웨거 주소 등 )
-//        log.info("static contents : {}", this.staticContentsPatterns);
-//        return (web) -> web.ignoring().requestMatchers(staticContentsPatterns);
-//    }
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        // Security 필터를 적용 하지 않을(허용) 주소( 기본 스웨거 주소 등 )
+        return web -> web.ignoring().requestMatchers(staticContentsPatterns);
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        // 모든 권한 허용
-        http.authorizeHttpRequests().requestMatchers(this.staticContentsPatterns).permitAll();
-        http.authorizeHttpRequests().requestMatchers(this.permitAllPatterns).permitAll();
+        http
+                .csrf().disable()
+                .httpBasic().disable();
+
+        // filter
+        http.addFilterBefore(new LoginRequestBodyParseFilter(loginPattern), UsernamePasswordAuthenticationFilter.class);
 
         http
                 .formLogin()
-                .loginPage("/error/401") // 로그인 form은 보통 front-end 에서 사용하기 때문에 이러한 url을 매핑하였음.
+                .loginPage(this.loginPattern) // 로그인 front 주소
                 .loginProcessingUrl("/login") // UsernamePasswordAuthenticationFilter가 낚아 챌 api
                 .usernameParameter("userId")
                 .passwordParameter("password")
                 .and()
                 .exceptionHandling();
 
+        // 모든 권한 허용
+        http.authorizeHttpRequests().requestMatchers(this.permitAllPatterns).permitAll();
+
         // 권한 설정
         http.authorizeHttpRequests().requestMatchers("GET", "/admin").hasRole("ADMIN");
         http.authorizeHttpRequests().requestMatchers("GET", "/all").hasAnyRole("USER","ADMIN");
+
+        http.authorizeHttpRequests().anyRequest().permitAll();
 
         http.authenticationProvider(authenticationProvider);
         return http.build();

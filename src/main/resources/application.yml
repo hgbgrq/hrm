@@ -19,6 +19,8 @@ spring:
 #          storage_engine: innodb
 
   security:
+    login-page: # 로그인 페이지 주소
+      /err/login
     staticContents-url-patterns: # 기본 스웨거 접속 url
       /v3/api-docs/**
       , /swagger-ui/**

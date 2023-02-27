@@ -1,10 +1,9 @@
 package com.example.hrm.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 @Data
 @Entity
@@ -12,8 +11,10 @@ import lombok.Data;
 public class User {
     @Id
     private String userId;
-    @Column
-    private String orgId;
+
+    @ManyToOne(targetEntity = Organization.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "orgId")
+    private Organization organization;
     @Column
     private String positionCode;
     @Column
@@ -21,8 +22,15 @@ public class User {
     @Column
     private String phoneNumber;
     @Column
-    private String userName;
+    private String userFirstName;
+    @Column
+    private String userLastName;
     @Column
     private String password;
+    @Column
+    private String statusCode;
 
+    public String toStringJson() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+    }
 }

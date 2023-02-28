@@ -25,5 +25,7 @@ public class UserVacation {
     private String expireDate;
     @Column
     private String userVacationDescription;
+    @Column
+    private String useYn;
 
 }

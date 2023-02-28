@@ -5,18 +5,27 @@ import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import java.util.List;
+
 @Data
-@Entity
+@Entity()
 @Table(name = "TB_USER")
 public class User {
     @Id
     private String userId;
 
     @ManyToOne(targetEntity = Organization.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "orgId")
+    @JoinColumn(name = "organizationUuid")
     private Organization organization;
-    @Column
-    private String positionCode;
+
+    @ManyToOne(targetEntity = CommonCode.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "positionCodeId")
+    private CommonCode commonCodePosition;
+
+    @ManyToOne(targetEntity = CommonCode.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "statusCodeId")
+    private CommonCode commonCodeStatus;
+
     @Column
     private String joinDate;
     @Column
@@ -27,8 +36,9 @@ public class User {
     private String userLastName;
     @Column
     private String password;
-    @Column
-    private String statusCode;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserVacation> vacationList;
 
     public String toStringJson() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

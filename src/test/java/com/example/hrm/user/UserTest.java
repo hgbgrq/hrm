@@ -16,6 +16,7 @@ public class UserTest {
 
     @Test
     void getUserList(){
+        System.out.println("테스트");
         System.out.println(userSvc.selectUser().toStringJson());
     }
 

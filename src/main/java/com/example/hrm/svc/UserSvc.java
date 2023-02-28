@@ -1,6 +1,7 @@
 package com.example.hrm.svc;
 
 import com.example.hrm.entity.User;
+import com.example.hrm.model.user.dto.UserDto;
 import com.example.hrm.model.user.res.UserRes;
 import com.example.hrm.model.user.res.UserResList;
 import com.example.hrm.repository.UserRepository;
@@ -20,13 +21,19 @@ public class UserSvc {
     private UserRepository userRepository;
 
     public UserResList selectUser(){
-        List<User> userList = userRepository.selectUsers();
+        List<UserDto> userList = userRepository.selectUsers();
         List<UserRes> list = new ArrayList<>();
         UserResList result = new UserResList();
 
-        for(User user : userList){
+        for(UserDto dto : userList){
+            log.info(dto.toStringJson());
             UserRes userRes = new UserRes();
-            userRes.setUserId(user.getUserId());
+            userRes.setUserId(dto.getUserId());
+            userRes.setUserFirstName(dto.getUserFirstName());
+            userRes.setUserLastName(dto.getUserLastName());
+            userRes.setOrgName(dto.getOrganizationName());
+            userRes.setPositionName(dto.getPositionName());
+            userRes.setStatusName(dto.getStatusName());
             list.add(userRes);
         }
         result.setList(list);

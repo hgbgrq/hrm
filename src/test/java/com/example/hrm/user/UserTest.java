@@ -1,7 +1,7 @@
 package com.example.hrm.user;
 
 
-import com.example.hrm.svc.UserSvc;
+import com.example.hrm.user.svc.UserSvc;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,7 @@ public class UserTest {
 
     @Test
     void getUserList(){
-        System.out.println("테스트");
-        System.out.println(userSvc.selectUser().toStringJson());
+
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.hrm.model.user.dto;
+package com.example.hrm.user.model.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

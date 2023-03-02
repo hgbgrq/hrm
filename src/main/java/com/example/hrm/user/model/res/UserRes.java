@@ -1,4 +1,4 @@
-package com.example.hrm.model.user.res;
+package com.example.hrm.user.model.res;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

@@ -18,9 +18,9 @@ public class UserVacation {
     @Column
     private String userVacationCode;
     @Column
-    private String userVacationTotalCount;
+    private Float userVacationTotalCount;
     @Column
-    private String userVacationRemainCount;
+    private Float userVacationRemainCount;
     @Column
     private String expireDate;
     @Column

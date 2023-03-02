@@ -1,12 +1,11 @@
-package com.example.hrm.svc;
+package com.example.hrm.user.svc;
 
-import com.example.hrm.entity.User;
-import com.example.hrm.model.user.dto.UserDto;
-import com.example.hrm.model.user.res.UserRes;
-import com.example.hrm.model.user.res.UserResList;
-import com.example.hrm.repository.UserRepository;
+import com.example.hrm.user.model.dto.UserDto;
+import com.example.hrm.user.model.req.UserReq;
+import com.example.hrm.user.model.res.UserRes;
+import com.example.hrm.user.model.res.UserResList;
+import com.example.hrm.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +19,12 @@ public class UserSvc {
     @Autowired
     private UserRepository userRepository;
 
-    public UserResList selectUser(){
-        List<UserDto> userList = userRepository.selectUsers();
+    public UserResList selectUser(UserReq userReq){
+        List<UserDto> userList = userRepository.selectUsers(userReq);
         List<UserRes> list = new ArrayList<>();
         UserResList result = new UserResList();
 
         for(UserDto dto : userList){
-            log.info(dto.toStringJson());
             UserRes userRes = new UserRes();
             userRes.setUserId(dto.getUserId());
             userRes.setUserFirstName(dto.getUserFirstName());
@@ -34,6 +32,7 @@ public class UserSvc {
             userRes.setOrgName(dto.getOrganizationName());
             userRes.setPositionName(dto.getPositionName());
             userRes.setStatusName(dto.getStatusName());
+            userRes.setRemainVacation(dto.getRemainVacation());
             list.add(userRes);
         }
         result.setList(list);

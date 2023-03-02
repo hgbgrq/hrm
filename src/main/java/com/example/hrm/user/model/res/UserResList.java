@@ -1,4 +1,4 @@
-package com.example.hrm.model.user.res;
+package com.example.hrm.user.model.res;
 
 import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;

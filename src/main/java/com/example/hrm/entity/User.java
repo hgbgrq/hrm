@@ -37,9 +37,6 @@ public class User {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserVacation> vacationList;
-
     public String toStringJson() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
